@@ -9,8 +9,8 @@ pipeline.init()
 //customization
 pipeline.getStage(pipeline.INSTRUMENTATION_TEST).strategy = StageStrategy.SKIP_STAGE
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
-//pipeline.buildGradleTask = "clean assemble"
-//pipeline.androidTestBuildType = "debug"
+
+pipeline.buildAndroidCommand = "./ci-internal/script/build_repo.sh -android"
 
 //run
 pipeline.run()
