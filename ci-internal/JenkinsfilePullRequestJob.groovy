@@ -1,5 +1,5 @@
 @Library('surf-lib@flutter') // https://bitbucket.org/surfstudio/jenkins-pipeline-lib/
-import ru.surfstudio.ci.pipeline.pr.PrPipelineAndroid
+import ru.surfstudio.ci.pipeline.pr.PrPipelineFlutter
 import ru.surfstudio.ci.stage.StageStrategy
 
 //init
