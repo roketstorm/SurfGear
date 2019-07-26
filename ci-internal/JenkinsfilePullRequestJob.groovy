@@ -9,7 +9,12 @@ pipeline.init()
 //customization
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
-pipeline.buildAndroidCommand = "./ci-internal/script/build_repo.sh -android"
+pipeline.buildAndroidCommand = "cd ./template ;" +
+        "    flutter build apk;" +
+        "    cd .."
 
+pipeline.buildIOsCommand = "cd ./template ;" +
+        "    flutter build ios;" +
+        "    cd ..;"
 //run
 pipeline.run()
