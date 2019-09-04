@@ -7,9 +7,9 @@ platform=
 
 function build() {
     if [[ ${platform} = ${ios} ]]; then
-       flutter build ios
+       ./script/ios/build.sh -qa
     else
-       flutter build apk
+       ./script/android/build.sh -qa
     fi
 }
 
