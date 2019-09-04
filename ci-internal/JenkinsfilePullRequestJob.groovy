@@ -18,7 +18,7 @@ pipeline.buildIOsCommand = "cd ./template ;" +
         "    flutter build ios --flavor dev;" +
         "    cd ..;"
 
-pipeline,getStage(pipeline.BUILD_IOS).body = {
+pipeline.getStage(pipeline.BUILD_IOS).body = {
         CommonUtil.shWithRuby(this, pipeline.buildIOsCommand)
 }
 //run
