@@ -10,11 +10,11 @@ pipeline.init()
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
 pipeline.buildAndroidCommand = "cd ./template ;" +
-        "    flutter build apk;" +
+        "    flutter build apk --flavor dev;" +
         "    cd .."
 
 pipeline.buildIOsCommand = "cd ./template ;" +
-        "    flutter build ios;" +
+        "    flutter build ios --falvor -dev;" +
         "    cd ..;"
 //run
 pipeline.run()
