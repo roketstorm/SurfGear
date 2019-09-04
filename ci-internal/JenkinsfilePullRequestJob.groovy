@@ -15,7 +15,7 @@ pipeline.buildAndroidCommand = "cd ./template ;" +
         "    cd .."
 
 pipeline.buildIOsCommand = "cd ./template ;" +
-        "    flutter build ios --flavor dev --no-codesign;" +
+        "    flutter packages get;  flutter build ios --flavor dev --no-codesign;" +
         "    cd ..;"
 
 pipeline.getStage(pipeline.BUILD_IOS).body = {
