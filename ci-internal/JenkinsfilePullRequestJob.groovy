@@ -18,8 +18,6 @@ pipeline.buildIOsCommand = "cd ./template ;" +
         "    flutter packages get;  flutter build ios --flavor dev --no-codesign;" +
         "    cd ..;"
 
-pipeline.getStage(pipeline.BUILD_IOS).body = {
-        CommonUtil.shWithRuby(this, pipeline.buildIOsCommand)
-}
+pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
 //run
 pipeline.run()
