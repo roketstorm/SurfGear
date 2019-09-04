@@ -18,6 +18,25 @@ pipeline.buildIOsCommand = "cd ./template ;" +
         "    flutter packages get;  flutter build ios --flavor dev --no-codesign;" +
         "    cd ..;"
 
+pipeline.testCommand = """
+        for dir in ./* ; do
+                pwd
+
+                echo \${dir}
+                if [[ dir =  docs]] then
+                        continue
+                fi
+                cd \${dir}
+                pwd
+                flutter test
+                cd ..
+        done
+""" 
+
 pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
+// pipeline.getStage(pipeline.UNIT_TEST).body = {
+//         def script = ""
+//         FLutterPipelineHelper.testStageBody(this, )
+// }
 //run
 pipeline.run()
