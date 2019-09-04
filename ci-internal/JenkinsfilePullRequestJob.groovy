@@ -1,6 +1,7 @@
 @Library('surf-lib@flutter') // https://bitbucket.org/surfstudio/jenkins-pipeline-lib/
 import ru.surfstudio.ci.pipeline.pr.PrPipelineFlutter
 import ru.surfstudio.ci.stage.StageStrategy
+import ru.surfstudio.ci.CommonUtil
 
 //init
 def pipeline = new PrPipelineFlutter(this)
@@ -16,5 +17,9 @@ pipeline.buildAndroidCommand = "cd ./template ;" +
 pipeline.buildIOsCommand = "cd ./template ;" +
         "    flutter build ios --flavor dev;" +
         "    cd ..;"
+
+pipeline,getStage(pipeline.BUILD_IOS).body = {
+        CommonUtil.shWithRuby(this, pipeline.buildIOsCommand)
+}
 //run
 pipeline.run()
