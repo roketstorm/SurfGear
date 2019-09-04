@@ -14,7 +14,7 @@ pipeline.buildAndroidCommand = "cd ./template ;" +
         "    cd .."
 
 pipeline.buildIOsCommand = "cd ./template ;" +
-        "    flutter build ios --falvor -dev;" +
+        "    flutter build ios --falvor dev;" +
         "    cd ..;"
 //run
 pipeline.run()
