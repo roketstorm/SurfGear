@@ -7,6 +7,8 @@ import ru.surfstudio.ci.CommonUtil
 def pipeline = new PrPipelineFlutter(this)
 pipeline.init()
 
+pipeline.node = "android-2" //todo temporary fix of low memory on nodes
+
 //customization
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
