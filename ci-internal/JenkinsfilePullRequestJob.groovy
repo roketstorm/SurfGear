@@ -18,15 +18,15 @@ pipeline.buildIOsCommand = "cd ./template ;" +
         "    flutter packages get;  flutter build ios --flavor dev --no-codesign;" +
         "    cd ..;"
 
-pipeline.testCommand = """
+pipeline.testCommand = ''''
         pwd
         for dir in */ ; do
             pwd
-            echo \$dir
+            echo $dir
             if [[ dir = docs ]]; then
                 continue
             fi
-            cd \${dir}
+            cd ${dir}
             pwd
             flutter test
             if [ $? -eq 1 ] ; then
@@ -35,7 +35,7 @@ pipeline.testCommand = """
             fi
             cd ..
         done || exit 
-""" 
+'''
 
 pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
 // pipeline.getStage(pipeline.UNIT_TEST).body = {
