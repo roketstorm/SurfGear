@@ -19,18 +19,22 @@ pipeline.buildIOsCommand = "cd ./template ;" +
         "    cd ..;"
 
 pipeline.testCommand = """
-        for dir in ./* ; do
-                pwd
-
-                echo \${dir}
-                if [[ dir =  docs]] then
-                        continue
-                fi
-                cd \${dir}
-                pwd
-                flutter test
-                cd ..
-        done
+        pwd
+        for dir in */ ; do
+            pwd
+            echo \$dir
+            if [[ dir = docs ]]; then
+                continue
+            fi
+            cd \${dir}
+            pwd
+            flutter test
+            if [ $? -eq 1 ] ; then
+                echo Has errors... Exiting ...
+                exit 1    
+            fi
+            cd ..
+        done || exit 
 """ 
 
 pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
