@@ -18,7 +18,7 @@ pipeline.buildIOsCommand = "cd ./template ;" +
         "    flutter packages get;  flutter build ios --flavor dev --no-codesign;" +
         "    cd ..;"
 
-pipeline.testCommand = ''''
+pipeline.testCommand = '''
         pwd
         for dir in */ ; do
             pwd
