@@ -10,13 +10,33 @@ pipeline.init()
 //customization
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
-pipeline.buildAndroidCommand = "cd ./template ;" +
-        "    flutter build apk --flavor dev;" +
-        "    cd .."
+pipeline.buildAndroidCommand = '''
+### Script for run and build all of examples in packages
+### No build of template - it's unnecessary
 
-pipeline.buildIOsCommand = "cd ./template ;" +
-        "    flutter packages get;  flutter build ios --flavor dev --no-codesign;" +
-        "    cd ..;"
+for dir in */; do
+    pwd
+    echo Found dir = $dir. Dive into...
+    cd ${dir}
+    if [ ! -f "./pubspec.yaml" ]; then
+        echo "No pubspec.yaml. ${dir} is not flutter package root directory. Skipping..."
+        cd ..
+        continue
+    fi
+
+    if [ ! -d "./example/" ]; then
+        echo "No example/ dir. ${dir} has not example!!!!!. Skipping..."
+        cd ..
+        continue
+    fi
+    pwd
+    cd ./example
+    flutter build apk || exit
+    cd ../..
+done || exit
+'''
+
+pipeline.buildIOsCommand = '' //todo build ios command
 
 pipeline.testCommand = '''
         pwd
@@ -38,9 +58,5 @@ pipeline.testCommand = '''
 '''
 
 pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
-// pipeline.getStage(pipeline.UNIT_TEST).body = {
-//         def script = ""
-//         FLutterPipelineHelper.testStageBody(this, )
-// }
-//run
+
 pipeline.run()
