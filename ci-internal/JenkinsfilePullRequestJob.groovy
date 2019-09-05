@@ -23,7 +23,7 @@ pipeline.testCommand = '''
         for dir in */ ; do
             pwd
             echo $dir
-            if [[ dir = docs ]]; then
+            if [[ $dir = docs/ ]]; then
                 continue
             fi
             cd ${dir}
