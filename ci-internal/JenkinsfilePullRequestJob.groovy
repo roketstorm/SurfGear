@@ -45,14 +45,16 @@ pipeline.testCommand = '''
         for dir in */ ; do
             pwd
             echo $dir
-            if [[ $dir = docs/ ]]; then
+            if [ ! -f "./pubspec.yaml" ]; then
+                echo "No pubspec.yaml. ${dir} is not flutter package root directory. Skipping..."
                 continue
             fi
+
             cd ${dir}
-            pwd
+            echo Run tests into ${dir} ...
             flutter test
             if [ $? -eq 1 ] ; then
-                echo Has errors... Exiting ...
+                echo Test has errors... Exiting ...
                 exit 1    
             fi
             cd ..
