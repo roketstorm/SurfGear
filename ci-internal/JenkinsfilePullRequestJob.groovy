@@ -32,7 +32,7 @@ for dir in */; do
         continue
     fi
 
-    if [ ! -f ".example/pubspec.yaml" ]; then
+    if [ ! -f "./example/pubspec.yaml" ]; then
         echo "No pubspec.yaml in example. ${dir} has  dart example. Skipping..."
         cd ..
         continue
