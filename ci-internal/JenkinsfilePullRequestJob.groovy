@@ -31,6 +31,12 @@ for dir in */; do
         cd ..
         continue
     fi
+
+    if [ ! -f ".example/pubspec.yaml" ]; then
+        echo "No pubspec.yaml in example. ${dir} has  dart example. Skipping..."
+        cd ..
+        continue
+    fi
     pwd
     cd ./example
     flutter build apk || exit
