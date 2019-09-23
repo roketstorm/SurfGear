@@ -12,6 +12,7 @@ pipeline.node = "android-2" //todo temporary fix of low memory on nodes
 //customization
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
+pipeline.checkoutFlutterVersionCommand = "pwd"
 pipeline.buildAndroidCommand = '''
 ### Script for run and build all of examples in packages
 ### No build of template - it's unnecessary
