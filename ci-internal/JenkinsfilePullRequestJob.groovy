@@ -12,8 +12,8 @@ pipeline.node = "android-2" //todo temporary fix of low memory on nodes
 //customization
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
-def flutterVersion = "v1.9.1+hotfix.2"
-pipeline.checkoutFlutterVersionCommand = "flutter version $flutterVersion"
+def flutterVersion = "v1.12.13+hotfix.6"
+pipeline.checkoutFlutterVersionCommand = "flutter channel stable; flutter upgrade; flutter version $flutterVersion"
 pipeline.buildAndroidCommand = '''
 ### Script for run and build all of examples in packages
 ### No build of template - it's unnecessary
