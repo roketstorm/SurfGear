@@ -73,6 +73,6 @@ pipeline.testCommand = '''
 '''
 
 pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
-StageTreeUtil.forStages(pipeline.getStage(STAGE_IOS).stages, { stage -> stage.strategy = StageStrategy.SKIP_STAGE })
+StageTreeUtil.forStages(pipeline.getStage(pipeline.STAGE_IOS).stages, { stage -> stage.strategy = StageStrategy.SKIP_STAGE })
 
 pipeline.run()
