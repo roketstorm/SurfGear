@@ -2,18 +2,18 @@
 import ru.surfstudio.ci.pipeline.pr.PrPipelineFlutter
 import ru.surfstudio.ci.stage.StageStrategy
 import ru.surfstudio.ci.CommonUtil
+import ru.surfstudio.ci.utils.StageTreeUtil
 
 //init
 def pipeline = new PrPipelineFlutter(this)
 pipeline.init()
 
-pipeline.node = "android-2" //todo temporary fix of low memory on nodes
 
 //customization
 pipeline.getStage(pipeline.STATIC_CODE_ANALYSIS).strategy = StageStrategy.SKIP_STAGE
 
-def flutterVersion = "v1.12.13+hotfix.6"
-pipeline.checkoutFlutterVersionCommand = "flutter channel stable; flutter upgrade; flutter version $flutterVersion"
+
+pipeline.checkoutFlutterVersionCommand = "flutter channel stable; flutter upgrade"
 pipeline.buildAndroidCommand = '''
 ### Script for run and build all of examples in packages
 ### No build of template - it's unnecessary
@@ -73,5 +73,6 @@ pipeline.testCommand = '''
 '''
 
 pipeline.getStage(pipeline.BUILD_IOS).strategy = StageStrategy.SKIP_STAGE
+StageTreeUtil.forStages(pipeline.getStage(STAGE_IOS).stages, { stage -> stage.strategy = StageStrategy.SKIP_STAGE })
 
 pipeline.run()
