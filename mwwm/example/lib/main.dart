@@ -38,5 +38,5 @@ void main() {
      ..registerBuilder<AppWidgetModel>(createAppModel)
      ..registerBuilder<CounterWidgetModel>(createCounterModel);
 
-  runApp(App());
+  runApp(App(testInt: 1, testString: '1'));
 }

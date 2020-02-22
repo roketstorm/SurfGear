@@ -7,6 +7,8 @@ import 'package:mwwm/src/widget_model_creator.dart';
 typedef WidgetStateBuilder = State Function();
 typedef DependenciesBuilder<C> = C Function(BuildContext);
 
+abstract class WidgetData {}
+
 /// Base class for widgets that has [WidgetModel]
 abstract class MwwmWidget<C extends Component> extends StatefulWidget {
   /// A function that build dependencies for WidgetModel and Widget
@@ -20,11 +22,14 @@ abstract class MwwmWidget<C extends Component> extends StatefulWidget {
   /// WidgetModelBuilders set in the [WidgetModelFactory]
   final WidgetModelBuilder widgetModelBuilder;
 
+  final WidgetData widgetData;
+
   MwwmWidget({
     Key key,
     @required this.dependenciesBuilder,
     @required this.widgetStateBuilder,
     this.widgetModelBuilder,
+    this.widgetData,
   }) : super(
           key: key,
         );
@@ -46,6 +51,7 @@ class _MwwmWidgetState<C extends Component> extends State<MwwmWidget> {
       builder: (ctx) => _MwwmWidget(
         wsBuilder: widget.widgetStateBuilder,
         widgetModelBuilder: widget.widgetModelBuilder,
+        widgetData: widget.widgetData,
       ),
     );
   }
@@ -61,9 +67,14 @@ class _MwwmWidgetState<C extends Component> extends State<MwwmWidget> {
 class _MwwmWidget extends StatefulWidget {
   final WidgetStateBuilder wsBuilder;
   final WidgetModelBuilder widgetModelBuilder;
+  final WidgetData widgetData;
 
-  const _MwwmWidget({Key key, this.wsBuilder, this.widgetModelBuilder})
-      : super(key: key);
+  const _MwwmWidget({
+    Key key,
+    this.wsBuilder,
+    this.widgetModelBuilder,
+    this.widgetData,
+  }) : super(key: key);
 
   @override
   State createState() {
@@ -92,6 +103,7 @@ abstract class WidgetState<WM extends WidgetModel> extends State<_MwwmWidget>
     } else {
       wm = wmbBuilder(context);
     }
+    wm.widgetData = widget.widgetData;
     super.initState();
   }
 

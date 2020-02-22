@@ -21,12 +21,22 @@ import 'package:rxdart/rxdart.dart';
 
 ///WidgetModel - interface
 ///WM is logical representation of widget.
-///Has Action as input 
+///Has Action as input
 ///and StreamedState(and descedants) as output
-abstract class WidgetModel {
+abstract class WidgetModel<WM extends WidgetData> {
   final ErrorHandler _errorHandler;
   CompositeSubscription _compositeSubscription = CompositeSubscription();
   PublishSubject<ExceptionWrapper> _errorSubject = PublishSubject();
+
+  WM _widgetData;
+
+  set widgetData(WM data) {
+    assert(_widgetData == null);
+    _widgetData = data;
+    initWidgetData();
+  }
+
+  WM get widgetData => _widgetData;
 
   Stream<ExceptionWrapper> get errorStream => _errorSubject.stream;
 
@@ -37,6 +47,8 @@ abstract class WidgetModel {
 
   @mustCallSuper
   void onLoad() {}
+
+  void initWidgetData() {}
 
   /// subscribe for interactors
   StreamSubscription subscribe<T>(

@@ -17,8 +17,10 @@ import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:rxdart/rxdart.dart';
 
+import 'app.dart';
+
 /// WidgetModel приложения
-class AppWidgetModel extends WidgetModel {
+class AppWidgetModel extends WidgetModel<AppWmData> {
   final GlobalKey<NavigatorState> _navigator;
 
   AppWidgetModel(
@@ -30,6 +32,11 @@ class AppWidgetModel extends WidgetModel {
   void onLoad() {
     _loadApp();
     super.onLoad();
+  }
+
+  @override
+  void initWidgetData() {
+    print('test: ${widgetData?.testInt}');
   }
 
   void _loadApp() async {

@@ -19,12 +19,25 @@ import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
 import 'package:injector/injector.dart';
 
+import '../../main.dart';
+
+class AppWmData extends WidgetData {
+  int testInt;
+  String testString;
+
+  AppWmData(this.testInt, this.testString);
+}
+
 /// Widget приложения
 class App extends MwwmWidget<AppComponent> {
-  App()
-      : super(
+  App({
+    int testInt,
+    String testString,
+  }) : super(
           dependenciesBuilder: (BuildContext context) => AppComponent(),
           widgetStateBuilder: () => _AppState(),
+          widgetModelBuilder: createAppModel,
+          widgetData: AppWmData(testInt, testString),
         );
 }
 
