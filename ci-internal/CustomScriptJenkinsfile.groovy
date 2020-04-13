@@ -22,12 +22,12 @@ def updateStage = pipeline.stage('Upgrade') {
 def stages = [];
 
 for (n in nodes) {
-    stages.add(pipeline.node(n, false, [updateStage]))
+    stages.add(pipeline.node(n, n, false, [updateStage]))
 }
 
 //stages
 pipeline.stages = [
-        pipeline.parallel('', stages)
+        pipeline.parallel('Custom', stages)
 ]
 
 //run
