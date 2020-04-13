@@ -23,7 +23,7 @@ pipeline.propertiesProvider = {
     ]
 }
 
-def updateStage = pipeline.stage('Upgrade) {
+def updateStage = pipeline.stage('Upgrade') {
     pipeline.sh 'flutter channel stable'
     pipeline.sh 'flutter upgrade'
 }
