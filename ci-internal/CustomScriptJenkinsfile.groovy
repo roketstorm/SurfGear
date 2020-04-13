@@ -28,15 +28,17 @@ def updateStage = pipeline.stage('Upgrade') {
     pipeline.sh 'flutter upgrade'
 }
 
+def stages = [];
+
+for (n in nodes) {
+                stages.add(pipeline.node(n) {
+                    updateStage
+                })
+}
+
 //stages
 pipeline.stages = [
-        pipeline.parallel {
-            for (n in nodes) {
-                pipeline.node(n) {
-                    updateStage
-                }
-            }
-        }
+        pipeline.parallel ('', stages)
 ]
 
 //run
