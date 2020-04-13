@@ -24,14 +24,14 @@ pipeline.propertiesProvider = {
 }
 
 def updateStage = pipeline.stage('Upgrade') {
-    pipeline.sh 'flutter channel stable'
-    pipeline.sh 'flutter upgrade'
+    sh 'flutter channel stable'
+    sh 'flutter upgrade'
 }
 
 def stages = [];
 
 for (n in nodes) {
-    stages.add(pipeline.node(n,[updateStage]))
+    stages.add(pipeline.node(n,n,[updateStage]))
 }
 
 //stages
