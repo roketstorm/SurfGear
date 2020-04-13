@@ -31,7 +31,7 @@ def updateStage = pipeline.stage('Upgrade') {
 def stages = [];
 
 for (n in nodes) {
-    stages.add(pipeline.node(n,n,[updateStage]))
+    stages.add(pipeline.node(n, [updateStage]))
 }
 
 //stages
