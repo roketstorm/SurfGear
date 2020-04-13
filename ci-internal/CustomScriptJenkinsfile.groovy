@@ -15,6 +15,7 @@ pipeline.propertiesProvider = {
 }
 
 def updateStage = pipeline.stage('Upgrade') {
+    sh 'flutter doctor'
     sh 'flutter channel stable'
     sh 'flutter upgrade'
 }
