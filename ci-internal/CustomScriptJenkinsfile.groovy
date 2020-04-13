@@ -36,7 +36,7 @@ for (n in nodes) {
 
 //stages
 pipeline.stages = [
-        pipeline.parallel ('', stages)
+        pipeline.parallel('', stages)
 ]
 
 //run
