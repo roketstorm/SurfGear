@@ -28,7 +28,7 @@ dependencies:
   pedantic: ^1.8.0+1
 
   #rx
-  rxdart: ^0.23.1
+  rxdart: ^0.24.0
 
   #storage
   shared_preferences: 0.5.6

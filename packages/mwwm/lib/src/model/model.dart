@@ -50,7 +50,8 @@ class Model {
     return Stream.error(NoBroadcastPerformerException(C));
   }
 
-  Future<D> _throwError<D>(Change change) => Future.error(
+  Future<D> _throwError<D>(Change change) =>
+      Future.error(
         NoPerformerException(change),
         StackTrace.fromString("${this.runtimeType} at 17"),
       );
