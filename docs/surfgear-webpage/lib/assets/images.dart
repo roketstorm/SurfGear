@@ -1,6 +1,5 @@
-const String assetsBasePath = "../assets";
-const String imagesBasePath = "$assetsBasePath/images";
-const String iconsBasePath = "$assetsBasePath/icons";
+const String imagesBasePath = "images";
+const String iconsBasePath = "icons";
 
 const String imgLogo = "$imagesBasePath/img_logo.png";
 const String imgLogoBlue = "$imagesBasePath/img_logo_blue.png";

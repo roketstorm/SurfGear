@@ -24,7 +24,7 @@ class Module {
 List<String> _stubImages = [icLib1, icLib2, icLib2, icLib4, icLib5, icLib6];
 
 Future<List<Module>> get modules async {
-  final json = await rootBundle.loadString('assets/libraries_config.json');
+  final json = await rootBundle.loadString('libraries_config.json');
   final jsonList = jsonDecode(json) as List;
 
   return [
