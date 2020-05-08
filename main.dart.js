@@ -6580,7 +6580,7 @@ var $async$F1=P.Y(function(a,b){if(a===1)return P.a_(b,s)
 while(true)switch(t){case 0:h=u.j
 g=C.aA
 t=3
-return P.ac($.kl().NT("assets/libraries_config.json"),$async$F1)
+return P.ac($.kl().NT("libraries_config.json"),$async$F1)
 case 3:j=h.a(g.yr(0,b,null))
 i=H.a([],u.fg)
 for(q=J.al(j),p=0;p<q.gl(j);++p){o=J.V(q.i(j,p),"name")
@@ -40841,7 +40841,7 @@ return M.Z5(C.j,E.Zb(D.w7(C.aS,T.bB(H.a([new O.BC(t),new O.BX(t),new T.at(t,630,
 O.Gf.prototype={
 $1:function(a){}}
 O.BC.prototype={
-D:function(a){var t=null,s=u.p,r=H.a([new T.bd(C.hb,new O.iJ(new O.QK(a),U.eK("../assets/images/img_logo_blue.png",C.E,t,t,t),t),t),new T.bd(C.hb,M.uq("\u041a\u0430\u0442\u0430\u043b\u043e\u0433 \u043c\u043e\u0434\u0443\u043b\u0435\u0439",2,Z.a0q(C.h3),C.ap),t)],s),q=S.FO(650),p=F.b2(a,!1).a.a>1500?T.q1(r,C.D,C.e_,C.w,t):T.bB(r,C.D,C.e_,C.w)
+D:function(a){var t=null,s=u.p,r=H.a([new T.bd(C.hb,new O.iJ(new O.QK(a),U.eK("images/img_logo_blue.png",C.E,t,t,t),t),t),new T.bd(C.hb,M.uq("\u041a\u0430\u0442\u0430\u043b\u043e\u0433 \u043c\u043e\u0434\u0443\u043b\u0435\u0439",2,Z.a0q(C.h3),C.ap),t)],s),q=S.FO(650),p=F.b2(a,!1).a.a>1500?T.q1(r,C.D,C.e_,C.w,t):T.bB(r,C.D,C.e_,C.w)
 return new T.ds(q,T.bB(H.a([new D.pa(t),new T.iT(1,C.c1,new T.hr(C.E,t,t,p,t),t)],s),C.D,C.G,C.w),t)}}
 O.QK.prototype={
 $0:function(){return K.KW(this.a).mQ("/",u.K)},
@@ -41021,7 +41021,7 @@ q:function(){this.d.cU(0)
 this.b6()},
 D:function(a){var t=F.b2(a,!1).a,s=this.a.c
 return new Q.jD(s,T.bB(H.a([new R.ri(s,null),this.EL(t.a)],u.p),C.D,C.G,C.w),new R.I2(this),null)},
-EL:function(a){var t,s,r,q=null,p="../assets/icons/ic_feature_1.png",o="\u041f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e \u0432 \u0431\u043e\u044e",n="\u0412\u0441\u0435 \u043c\u043e\u0434\u0443\u043b\u0438 \u0432\u044b\u0440\u043e\u0441\u043b\u0438 \u0438\u0437 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0445 \u0440\u0435\u0448\u0435\u043d\u0438\u0439 \u0432 \u043f\u0440\u043e\u0435\u043a\u0442\u0430\u0445 \u0441\u0442\u0443\u0434\u0438\u0438. \u0412\u043e\u0437\u044c\u043c\u0438\u0442\u0435 \u043b\u044e\u0431\u043e\u0439 \u043c\u043e\u0434\u0443\u043b\u044c \u0438 \u0431\u0443\u0434\u044c\u0442\u0435 \u0443\u0432\u0435\u0440\u0435\u043d\u044b, \u0447\u0442\u043e \u043f\u0440\u044f\u043c\u043e \u0441\u0435\u0439\u0447\u0430\u0441 \u043e\u043d \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0433\u0434\u0435-\u0442\u043e \u043d\u0430 \u043f\u0440\u043e\u0434\u0435.",m="../assets/icons/ic_feature_2.png",l="\u0417\u0430\u0431\u043e\u0442\u0430 \u0438 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435",k="\u041c\u044b \u043b\u044e\u0431\u0438\u043c \u043d\u0430\u0448\u0443 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443, \u0438 \u0432\u044b\u0434\u0435\u043b\u044f\u0435\u043c \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0445 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432 \u0434\u043b\u044f \u0440\u0430\u0431\u043e\u0442\u044b \u043d\u0430\u0434 \u043d\u0435\u0439 \u0444\u0443\u043b\u043b\u0442\u0430\u0439\u043c.",j="../assets/icons/ic_feature_3.png",i="\u041e\u0442\u043a\u0440\u044b\u0442\u044b\u0439 \u043a\u043e\u0434",h="\u0421 \u0432\u044b\u0445\u043e\u0434\u043e\u043c \u0432 \u043e\u043f\u0435\u043d\u0441\u043e\u0440\u0441 \u043c\u044b \u043d\u0430\u0434\u0435\u0435\u043c\u0441\u044f \u0437\u0430\u0440\u0443\u0447\u0438\u0442\u044c\u0441\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u043e\u0439 \u0441\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u0430 \u0438 \u0440\u0430\u0437\u0432\u0438\u0432\u0430\u0442\u044c \u043d\u0430\u0448\u0443 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443 \u0432\u043c\u0435\u0441\u0442\u0435."
+EL:function(a){var t,s,r,q=null,p="icons/ic_feature_1.png",o="\u041f\u0440\u043e\u0432\u0435\u0440\u0435\u043d\u043e \u0432 \u0431\u043e\u044e",n="\u0412\u0441\u0435 \u043c\u043e\u0434\u0443\u043b\u0438 \u0432\u044b\u0440\u043e\u0441\u043b\u0438 \u0438\u0437 \u043b\u043e\u043a\u0430\u043b\u044c\u043d\u044b\u0445 \u0440\u0435\u0448\u0435\u043d\u0438\u0439 \u0432 \u043f\u0440\u043e\u0435\u043a\u0442\u0430\u0445 \u0441\u0442\u0443\u0434\u0438\u0438. \u0412\u043e\u0437\u044c\u043c\u0438\u0442\u0435 \u043b\u044e\u0431\u043e\u0439 \u043c\u043e\u0434\u0443\u043b\u044c \u0438 \u0431\u0443\u0434\u044c\u0442\u0435 \u0443\u0432\u0435\u0440\u0435\u043d\u044b, \u0447\u0442\u043e \u043f\u0440\u044f\u043c\u043e \u0441\u0435\u0439\u0447\u0430\u0441 \u043e\u043d \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442 \u0433\u0434\u0435-\u0442\u043e \u043d\u0430 \u043f\u0440\u043e\u0434\u0435.",m="icons/ic_feature_2.png",l="\u0417\u0430\u0431\u043e\u0442\u0430 \u0438 \u0440\u0430\u0437\u0432\u0438\u0442\u0438\u0435",k="\u041c\u044b \u043b\u044e\u0431\u0438\u043c \u043d\u0430\u0448\u0443 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443, \u0438 \u0432\u044b\u0434\u0435\u043b\u044f\u0435\u043c \u043e\u0442\u0434\u0435\u043b\u044c\u043d\u044b\u0445 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u043e\u0432 \u0434\u043b\u044f \u0440\u0430\u0431\u043e\u0442\u044b \u043d\u0430\u0434 \u043d\u0435\u0439 \u0444\u0443\u043b\u043b\u0442\u0430\u0439\u043c.",j="icons/ic_feature_3.png",i="\u041e\u0442\u043a\u0440\u044b\u0442\u044b\u0439 \u043a\u043e\u0434",h="\u0421 \u0432\u044b\u0445\u043e\u0434\u043e\u043c \u0432 \u043e\u043f\u0435\u043d\u0441\u043e\u0440\u0441 \u043c\u044b \u043d\u0430\u0434\u0435\u0435\u043c\u0441\u044f \u0437\u0430\u0440\u0443\u0447\u0438\u0442\u044c\u0441\u044f \u043f\u043e\u0434\u0434\u0435\u0440\u0436\u043a\u043e\u0439 \u0441\u043e\u043e\u0431\u0449\u0435\u0441\u0442\u0432\u0430 \u0438 \u0440\u0430\u0437\u0432\u0438\u0432\u0430\u0442\u044c \u043d\u0430\u0448\u0443 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443 \u0432\u043c\u0435\u0441\u0442\u0435."
 if(a<=800){t=this.d
 return T.bB(H.a([M.hy(t,P.aU(0,50,0),n,new P.d(25,0),p,!1,o),new T.at(q,145,q,q),M.hy(t,P.aU(0,100,0),k,C.i,m,!0,l),new T.at(q,125,q,q),M.hy(t,P.aU(0,150,0),h,C.i,j,!1,i)],u.p),C.D,C.G,C.w)}else{t=a>800&&a<=1500
 s=u.p
@@ -41064,7 +41064,7 @@ s.b=!0
 s.a.push(new O.Ri(this))
 this.e=t},
 D:function(a){var t=this,s=null,r=t.e,q=S.FO(F.b2(t.c,!1).a.b*3),p=u.p,o=t.d,n=H.A(o).j("ia<1>")
-return M.Z5(C.j,E.Zb(D.w7(C.aS,T.jL(C.fV,H.a([new T.ds(q,T.jL(C.E,H.a([T.VC(new K.bX(-0.3,-0.1),U.eK("../assets/images/img_body_background.png",C.E,C.fX,s,F.b2(t.c,!1).a.a<=800?F.b2(t.c,!1).a.a:s),1/0,800)],p),C.bo),s),T.bB(H.a([new T.ds(S.FO(F.b2(a,!1).a.b),new L.wI(s),s),new B.qu(new O.Rj(),0,new P.ia(o,n),s,u.B9),new T.ds(S.FO(F.b2(a,!1).a.b),new V.wH(new P.ia(o,n),s),s)],p),C.D,C.G,C.w)],p),C.bo),C.a4,!1,s,s,s,s,s,s,s,s,s,s,s,s,s,s,new O.Rk(),s),r,C.o))}}
+return M.Z5(C.j,E.Zb(D.w7(C.aS,T.jL(C.fV,H.a([new T.ds(q,T.jL(C.E,H.a([T.VC(new K.bX(-0.3,-0.1),U.eK("images/img_body_background.png",C.E,C.fX,s,F.b2(t.c,!1).a.a<=800?F.b2(t.c,!1).a.a:s),1/0,800)],p),C.bo),s),T.bB(H.a([new T.ds(S.FO(F.b2(a,!1).a.b),new L.wI(s),s),new B.qu(new O.Rj(),0,new P.ia(o,n),s,u.B9),new T.ds(S.FO(F.b2(a,!1).a.b),new V.wH(new P.ia(o,n),s),s)],p),C.D,C.G,C.w)],p),C.bo),C.a4,!1,s,s,s,s,s,s,s,s,s,s,s,s,s,s,new O.Rk(),s),r,C.o))}}
 O.Ri.prototype={
 $0:function(){var t=this.a
 t.d.A(0,C.b.gdd(t.e.d).x)},
@@ -41084,7 +41084,7 @@ if(t!=null)t.sd3(0,!U.d_(this.c))
 this.cb()}}
 V.wH.prototype={
 D:function(a){var t=null,s=Math.max(H.r(F.b2(a,!1).a.a),1920)
-return T.jL(C.E,H.a([T.VC(C.E,U.eK("../assets/images/img_footer_background.jpg",C.jP,C.fX,t,t),1/0,s),new T.dR(new K.bX(0,-0.2),t,t,new V.tt(this.c,t),t)],u.p),C.bo)}}
+return T.jL(C.E,H.a([T.VC(C.E,U.eK("images/img_footer_background.jpg",C.jP,C.fX,t,t),1/0,s),new T.dR(new K.bX(0,-0.2),t,t,new V.tt(this.c,t),t)],u.p),C.bo)}}
 V.tt.prototype={
 ai:function(){return new V.EN(null,C.k)}}
 V.EN.prototype={
@@ -41145,7 +41145,7 @@ L.wI.prototype={
 D:function(a){var t,s=null,r=H.a([0,0.35,1],u.n)
 r=S.iF(s,s,s,s,T.Vr(C.jP,H.a([P.bo(207,5,14,22),P.bo(92,15,38,60),C.cF],u.bk),C.mY,r,C.jH),s,C.W)
 t=Math.max(H.r(F.b2(a,!1).a.a),1920)
-return T.jL(C.E,H.a([new M.dZ(r,C.o_,T.VC(C.E,U.eK("../assets/images/img_header_background.jpg",C.E,C.fX,s,s),1/0,t),s),new L.rE(s),new T.dR(C.jP,s,s,K.VR(new D.pa(s),K.bx(a).yh(C.ak),!1),s)],u.p),C.bo)}}
+return T.jL(C.E,H.a([new M.dZ(r,C.o_,T.VC(C.E,U.eK("images/img_header_background.jpg",C.E,C.fX,s,s),1/0,t),s),new L.rE(s),new T.dR(C.jP,s,s,K.VR(new D.pa(s),K.bx(a).yh(C.ak),!1),s)],u.p),C.bo)}}
 L.rE.prototype={
 ai:function(){return new L.Ew(C.k)}}
 L.Ew.prototype={
@@ -41153,7 +41153,7 @@ D:function(a){var t,s,r,q=null
 if(!this.d)P.w3(C.ha,new L.Tl(this),u.H)
 t=this.d
 s=t?1:0
-s=G.uh(U.eK("../assets/images/img_logo.png",C.E,q,q,q),C.o2,s)
+s=G.uh(U.eK("images/img_logo.png",C.E,q,q,q),C.o2,s)
 t=t?1:0
 r=H.a([new T.bd(C.hb,s,q),new T.bd(C.hb,G.uh(M.uq("\u041f\u043b\u0430\u0433\u0438\u043d\u044b \u0434\u043b\u044f Flutter-\u043f\u0440\u043e\u0435\u043a\u0442\u043e\u0432",2,Z.a0q(C.j),C.ap),C.o2,t),q)],u.p)
 if(F.b2(a,!1).a.a>1500)return T.q1(r,C.D,C.e_,C.w,q)
@@ -44907,8 +44907,8 @@ $.a3n=H.a([0,0,0],u.t)
 $.a3o=H.a([0,0,0,0],u.t)
 $.Xe=null
 $.Wr=P.bF(u.N)
-$.a6H=function(){var t="../assets/icons/ic_lib_2.png"
-return H.a(["../assets/icons/ic_lib_1.png",t,t,"../assets/icons/ic_lib_4.png","../assets/icons/ic_lib_5.png","../assets/icons/ic_lib_6.png"],u.s)}()
+$.a6H=function(){var t="icons/ic_lib_2.png"
+return H.a(["icons/ic_lib_1.png",t,t,"icons/ic_lib_4.png","icons/ic_lib_5.png","icons/ic_lib_6.png"],u.s)}()
 $.W_=!1})();(function lazyInitializers(){var t=hunkHelpers.lazy
 t($,"a9P","a1t",function(){return H.Zq(0,0,1)})
 t($,"a9c","a11",function(){return J.V($.aE.i(0,"PaintStyle"),"Stroke")})
