@@ -4,7 +4,8 @@ const String iconsBasePath = "$assetsBasePath/icons";
 
 const String imgLogo = "$imagesBasePath/img_logo.png";
 const String imgLogoBlue = "$imagesBasePath/img_logo_blue.png";
-const String imgBackground = "$imagesBasePath/img_header_background.jpg";
+const String imgHeaderBackground = "$imagesBasePath/img_header_background.jpg";
+const String imgFooterBackground = "$imagesBasePath/img_footer_background.jpg";
 const String imgBackgroundLogo = "$imagesBasePath/img_body_background.png";
 
 const String icFeature1 = "$iconsBasePath/ic_feature_1.png";

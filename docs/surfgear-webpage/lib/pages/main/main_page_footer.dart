@@ -5,7 +5,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:surfgear_webpage/assets/images.dart';
 import 'package:surfgear_webpage/assets/text.dart';
 import 'package:surfgear_webpage/assets/text_styles.dart';
@@ -29,9 +28,9 @@ class MainPageFooter extends StatelessWidget {
           minWidth: max(MediaQuery.of(context).size.width, 1920),
           maxWidth: double.infinity,
           child: Image.asset(
-            imgBackground,
+            imgFooterBackground,
             fit: BoxFit.fitWidth,
-            alignment: Alignment(0.0, 0.85),
+            alignment: Alignment.topCenter,
           ),
         ),
         Align(
