@@ -11,42 +11,7 @@ import 'package:surfgear_webpage/pages/main/main_page.dart';
 class MainPageHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        DecoratedBox(
-          position: DecorationPosition.foreground,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.0, 0.35, 1.0],
-              colors: [
-                Color(0x050E16).withOpacity(0.81),
-                Color(0x0F263C).withOpacity(0.36),
-                Colors.transparent,
-              ],
-            ),
-          ),
-          child: OverflowBox(
-            minWidth: max(MediaQuery.of(context).size.width, 1920),
-            maxWidth: double.infinity,
-            child: Image.asset(
-              imgHeaderBackground,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-        ),
-        _LogoAndText(),
-        Align(
-          alignment: Alignment.topCenter,
-          child: Theme(
-            data: Theme.of(context).copyWith(brightness: Brightness.dark),
-            child: Menu(),
-          ),
-        ),
-      ],
-    );
+    return _LogoAndText();
   }
 }
 
@@ -60,10 +25,10 @@ class __LogoAndTextState extends State<_LogoAndText> {
 
   @override
   Widget build(BuildContext context) {
-    if (!_visible) {
-      Future.delayed(const Duration(milliseconds: 1000),
-          () => setState(() => _visible = true));
-    }
+    // if (!_visible) {
+    //   Future.delayed(const Duration(milliseconds: 1000),
+    //       () => setState(() => _visible = true));
+    // }
 
     final children = <Widget>[
       Padding(
@@ -71,26 +36,18 @@ class __LogoAndTextState extends State<_LogoAndText> {
           horizontal: 56.0,
           vertical: 32.0,
         ),
-        child: AnimatedOpacity(
-          opacity: _visible ? 1 : 0,
-          duration: const Duration(milliseconds: 350),
-          child: Image.asset(imgLogo),
-        ),
+        child: Image.asset(imgLogo),
       ),
       Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 56.0,
           vertical: 32.0,
         ),
-        child: AnimatedOpacity(
-          opacity: _visible ? 1 : 0,
-          duration: const Duration(milliseconds: 350),
-          child: AutoSizeText(
-            'Плагины для Flutter-проектов',
-            textAlign: TextAlign.center,
-            maxLines: 2,
-            style: pageHeadlineTextStyle(color: Colors.white),
-          ),
+        child: AutoSizeText(
+          'Плагины для Flutter-проектов',
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          style: pageHeadlineTextStyle(color: Colors.white),
         ),
       ),
     ];

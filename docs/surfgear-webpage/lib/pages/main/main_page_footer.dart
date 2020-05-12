@@ -21,26 +21,7 @@ class MainPageFooter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: <Widget>[
-        OverflowBox(
-          minWidth: max(MediaQuery.of(context).size.width, 1920),
-          maxWidth: double.infinity,
-          child: Image.asset(
-            imgFooterBackground,
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.topCenter,
-          ),
-        ),
-        Align(
-          alignment: Alignment(0.0, -0.2),
-          child: _TextAndButton(
-            scrollChangesStream: scrollChangesStream,
-          ),
-        ),
-      ],
-    );
+    return _TextAndButton();
   }
 }
 
@@ -85,19 +66,19 @@ class __TextAndButtonState extends State<_TextAndButton>
       curve: Interval(0.7, 1.0),
     ));
 
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      _subscription = widget.scrollChangesStream.listen(
-        (_) => _animateWidget(),
-      );
-    });
+    // SchedulerBinding.instance.addPostFrameCallback((_) {
+    //   _subscription = widget.scrollChangesStream.listen(
+    //     (_) => _animateWidget(),
+    //   );
+    // });
   }
 
-  @override
-  void dispose() {
-    _subscription.cancel();
-    _animationController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _subscription.cancel();
+  //   _animationController.dispose();
+  //   super.dispose();
+  // }
 
   void _animateWidget() {
     if (_animationController.isCompleted) return;
@@ -113,27 +94,21 @@ class __TextAndButtonState extends State<_TextAndButton>
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 28.0),
-          child: FadeTransition(
-            opacity: _textAnimation,
-            child: AutoSizeText(
-              'Каталог модулей, для вас',
-              maxLines: 1,
-              style: headlineTextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-              ),
+          child: AutoSizeText(
+            'Каталог модулей, для вас',
+            maxLines: 1,
+            style: headlineTextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
             ),
           ),
         ),
         SizedBox(height: 32.0),
-        FadeTransition(
-          opacity: _buttonAnimation,
-          child: _CatalogButton(),
-        ),
+        _CatalogButton(),
       ],
     );
   }
