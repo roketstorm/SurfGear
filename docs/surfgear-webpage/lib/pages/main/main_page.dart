@@ -1,16 +1,16 @@
-import 'dart:async';
+import 'dart:math';
 
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:surfgear_webpage/assets/images.dart';
+import 'package:surfgear_webpage/assets/text.dart';
+import 'package:surfgear_webpage/common/uikit.dart';
 import 'package:surfgear_webpage/components/menu.dart';
-import 'package:surfgear_webpage/pages/main/body/main_page_body.dart';
-import 'package:surfgear_webpage/pages/main/main_page_footer.dart';
-import 'package:surfgear_webpage/pages/main/main_page_header.dart';
-
-import '../../assets/images.dart';
-import '../../assets/images.dart';
+import 'package:surfgear_webpage/main.dart';
 
 /// Medium screen width
 const double MEDIUM_SCREEN_WIDTH = 1500;
@@ -27,67 +27,79 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage>
     with SingleTickerProviderStateMixin {
-  /// Stream for storing page scroll position
-  StreamController _pageOffsetController = StreamController<double>.broadcast();
-
-  /// Page ScrollController
-  ScrollController _pageScrollController;
-
   PageController controller = PageController();
   int index = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    _initScrollControllerListener();
+  Widget _getBackground(int index) {
+    final theme = Theme.of(context);
+
+    if (index == 0) {
+      return Transform.translate(
+        offset: Offset(0, -16.0),
+        child: Image.network(
+          '/$assetsRoot/$svgSurfLogo',
+          key: Key('0'),
+          color: theme.brightness == Brightness.dark
+              ? Colors.white.withOpacity(0.05)
+              : Colors.black.withOpacity(0.05),
+          fit: BoxFit.cover,
+        ),
+      );
+    }
+
+    if (index == 1) {
+      return Align(
+        alignment: Alignment(0.0, 0.4),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+          child: Image.network(
+            '/$assetsRoot/$svgCompanies',
+            key: Key('1'),
+            color: theme.accentColor,
+          ),
+        ),
+      );
+    }
+
+    if (index == 2) {
+      return SizedBox.shrink(
+        key: Key('2'),
+      );
+    }
   }
 
-  void _initScrollControllerListener() {
-    _pageScrollController = ScrollController()
-      ..addListener(
-        () {
-          var scrollOffset = _pageScrollController.offset;
-          _pageOffsetController.add(scrollOffset);
-        },
-      );
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  Widget _switcherLayoutBuilder(Widget current, List<Widget> children) {
+    return Stack(
+      fit: StackFit.expand,
+      alignment: Alignment.center,
+      children: <Widget>[
+        ...children,
+        if (current != null) current,
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: Stack(
         fit: StackFit.expand,
-        // alignment: Alignment.center,
         children: <Widget>[
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 250),
-            layoutBuilder: (current, children) {
-              return Stack(
-                fit: StackFit.expand,
-                alignment: Alignment.center,
-                children: <Widget>[
-                  ...children,
-                  if (current != null) current,
-                ],
-              );
-            },
-            child: index == 0
-                ? Image.asset(
-                    imgHeaderBackground,
-                    key: Key('1'),
-                    fit: BoxFit.cover,
-                  )
-                : Image.asset(
-                    imgFooterBackground,
-                    key: Key('2'),
-                    fit: BoxFit.cover,
-                  ),
+            layoutBuilder: _switcherLayoutBuilder,
+            child: _getBackground(index),
           ),
           Listener(
             onPointerSignal: (signal) {
               if (signal is PointerScrollEvent) {
-                if (signal.scrollDelta.dy < 0) {
+                if (signal.scrollDelta.dy < 0 || signal.scrollDelta.dx < 0) {
                   controller.previousPage(
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.easeOut,
@@ -100,88 +112,143 @@ class _MainPageState extends State<MainPage>
                 }
               }
             },
-            child: PageView(
-              controller: controller,
-              physics: NeverScrollableScrollPhysics(),
-              onPageChanged: (i) => setState(() => index = i),
-              children: <Widget>[
-                MainPageHeader(),
-                MainPageFooter(),
-              ],
+            child: NotificationListener(
+              onNotification: (notification) {
+                if (notification is OverscrollIndicatorNotification) {
+                  notification.disallowGlow();
+                }
+                return false;
+              },
+              child: PageView(
+                controller: controller,
+                onPageChanged: (i) => setState(() => index = i),
+                children: <Widget>[
+                  _HelloSlide(),
+                  _ProductionSlide(),
+                  _ToCatalogSlide(),
+                ],
+              ),
             ),
           ),
           Align(
             alignment: Alignment.topCenter,
-            child: Theme(
-              data: Theme.of(context).copyWith(brightness: Brightness.dark),
-              child: Menu(),
+            child: Menu(),
+          ),
+          Align(
+            alignment: Alignment(0.0, 0.9),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(width: 40.0),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SmoothPageIndicator(
+                    controller: controller,
+                    count: 3,
+                    effect: SlideEffect(
+                      activeDotColor: Theme.of(context).accentColor,
+                      spacing: 16.0,
+                      paintStyle: PaintingStyle.stroke,
+                      dotColor: Theme.of(context).accentColor.withOpacity(0.6),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  icon: Icon(Icons.brightness_medium),
+                  color: Theme.of(context).accentColor,
+                  onPressed: () {
+                    ScopedModel.of<AppModel>(context).switchTheme();
+                  },
+                ),
+              ],
             ),
           ),
         ],
       ),
-      // SingleChildScrollView(
-      //   scrollDirection: Axis.vertical,
-      //   controller: _pageScrollController,
-      //   child: GestureDetector(
-      //     behavior: HitTestBehavior.opaque,
-      //     onVerticalDragStart: (_) {},
-      //     child: Stack(
-      //       children: [
-      //         _buildSurfLogo(),
-      //         Column(
-      //           children: <Widget>[
-      //             ConstrainedBox(
-      //               constraints: BoxConstraints.expand(
-      //                 height: MediaQuery.of(context).size.height,
-      //               ),
-      //               child: MainPageHeader(),
-      //             ),
-      //             StreamBuilder(
-      //               stream: _pageOffsetController.stream,
-      //               initialData: 0.0,
-      //               builder: (context, offset) {
-      //                 return MainPageBody(offset.data);
-      //               },
-      //             ),
-      //             ConstrainedBox(
-      //               constraints: BoxConstraints.expand(
-      //                 height: MediaQuery.of(context).size.height,
-      //               ),
-      //               child: MainPageFooter(
-      //                 scrollChangesStream: _pageOffsetController.stream,
-      //               ),
-      //             ),
-      //           ],
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
+}
 
-  Widget _buildSurfLogo() {
-    return ConstrainedBox(
-      constraints: BoxConstraints.expand(
-        height: MediaQuery.of(context).size.height * 3,
+class _HelloSlide extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final children = <Widget>[
+      Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 56.0,
+          vertical: 32.0,
+        ),
+        child: Image.network(
+          '/$assetsRoot/$svgSurfgearLogo',
+          color: Theme.of(context).accentColor,
+        ),
       ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          OverflowBox(
-            minWidth: 800,
-            maxWidth: double.infinity,
-            alignment: Alignment(-0.3, -0.1),
-            child: Image.asset(
-              imgBackgroundLogo,
-              fit: BoxFit.fitWidth,
-              width: MediaQuery.of(context).size.width <= SMALL_SCREEN_WIDTH
-                  ? MediaQuery.of(context).size.width
-                  : null,
-            ),
+      Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 56.0,
+          vertical: 32.0,
+        ),
+        child: Text(
+          'Плагины для Flutter-проектов',
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          style: Theme.of(context).textTheme.headline3,
+        ),
+      ),
+    ];
+
+    if (MediaQuery.of(context).size.width > MEDIUM_SCREEN_WIDTH) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
+    } else {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
+    }
+  }
+}
+
+class _ProductionSlide extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment(0.0, -0.3),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 28.0),
+        child: Text(
+          'Эссенция опыта спустя годы работы, всё здесь',
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.headline4,
+        ),
+      ),
+    );
+  }
+}
+
+class _ToCatalogSlide extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28.0),
+          child: Text(
+            'Каталог модулей, для вас',
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headline4,
           ),
-        ],
-      ),
+        ),
+        SizedBox(height: 32.0),
+        FilledButton(
+          title: mainPageCatalogBtnText,
+          onPressed: () => Navigator.of(context).pushNamed(Router.catalog),
+        ),
+      ],
     );
   }
 }

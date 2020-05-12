@@ -27,6 +27,8 @@ dependencies:
   auto_size_text: 2.1.0
   google_fonts: 1.0.0
   url_launcher: 5.4.5
+  scoped_model: 1.0.1
+  smooth_page_indicator: 0.1.5
 
 dev_dependencies:
   flutter_test:

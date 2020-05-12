@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:surfgear_webpage/assets/text.dart';
-import 'package:surfgear_webpage/assets/text_styles.dart';
 import 'package:surfgear_webpage/common/widgets.dart';
 import 'package:surfgear_webpage/const.dart';
 import 'package:surfgear_webpage/main.dart';
 import 'package:surfgear_webpage/pages/main/main_page.dart';
+import 'package:surfgear_webpage/style.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Menu extends StatelessWidget {
@@ -80,14 +80,10 @@ class _MenuButton extends StatelessWidget {
       buttonBuilder: (context, isHovering) {
         return Text(
           title,
-          style: buttonTextStyle(
-            color: Theme.of(context).brightness == Brightness.light
-                ? Color(0xFF181818)
-                : Colors.white,
-            fontSize: 24.0,
-            decoration:
-                isHovering ? TextDecoration.underline : TextDecoration.none,
-          ),
+          style: Theme.of(context).textTheme.overline.copyWith(
+                decoration:
+                    isHovering ? TextDecoration.underline : TextDecoration.none,
+              ),
         );
       },
     );
@@ -131,9 +127,7 @@ class __MenuBurgerButtonState extends State<_MenuBurgerButton>
             onPressed: onPressed,
             iconSize: 58.0,
             icon: AnimatedIcon(
-              color: Theme.of(context).brightness == Brightness.light
-                  ? Color(0xFF181818)
-                  : Colors.white,
+              color: Theme.of(context).textTheme.overline.color,
               icon: AnimatedIcons.menu_close,
               progress: _animationController,
             ),
@@ -153,7 +147,7 @@ class __MenuBurgerButtonState extends State<_MenuBurgerButton>
         return Material(
           type: MaterialType.transparency,
           child: Theme(
-            data: Theme.of(context).copyWith(brightness: Brightness.dark),
+            data: Style.dark,
             child: Container(
               height: MediaQuery.of(context).size.height,
               width: double.infinity,

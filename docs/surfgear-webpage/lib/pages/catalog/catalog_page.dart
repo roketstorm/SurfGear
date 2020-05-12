@@ -1,10 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:surfgear_webpage/assets/colors.dart';
+import 'package:scoped_model/scoped_model.dart';
 import 'package:surfgear_webpage/assets/images.dart';
 import 'package:surfgear_webpage/assets/text.dart';
-import 'package:surfgear_webpage/assets/text_styles.dart';
+import 'package:surfgear_webpage/common/uikit.dart';
 import 'package:surfgear_webpage/common/widgets.dart';
 import 'package:surfgear_webpage/components/menu.dart';
 import 'package:surfgear_webpage/const.dart';
@@ -17,7 +17,6 @@ class CatalogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
@@ -46,7 +45,10 @@ class _Header extends StatelessWidget {
         ),
         child: Clickable(
           onClick: () => Navigator.of(context).pushNamed(Router.main),
-          child: Image.asset(imgLogoBlue),
+          child: Image.network(
+            '/$assetsRoot/$svgSurfgearLogo',
+            color: Theme.of(context).accentColor,
+          ),
         ),
       ),
       Padding(
@@ -58,13 +60,13 @@ class _Header extends StatelessWidget {
           catalogPageTitle,
           textAlign: TextAlign.center,
           maxLines: 2,
-          style: pageHeadlineTextStyle(color: accentColor),
+          style: Theme.of(context).textTheme.headline4,
         ),
       ),
     ];
 
     return ConstrainedBox(
-      constraints: BoxConstraints.expand(height: 650.0),
+      constraints: BoxConstraints.expand(height: 700.0),
       child: Column(
         children: <Widget>[
           Menu(),
@@ -105,7 +107,13 @@ class _List extends StatelessWidget {
             Center(
               child: Padding(
                 padding: const EdgeInsets.only(top: 120.0),
-                child: _RepositoryButton(),
+                child: FilledButton(
+                  title: catalogPageRepoBtnText,
+                  // onPressed: () => launch(packagesUrl),
+                  onPressed: () {
+                    ScopedModel.of<AppModel>(context).switchTheme();
+                  },
+                ),
               ),
             ),
           ],
@@ -128,10 +136,15 @@ class _ListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final theme = Theme.of(context);
 
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: isOdd ? Color(0xFFF2F2F2) : Colors.white,
+        color: !isOdd
+            ? theme.scaffoldBackgroundColor
+            : theme.brightness == Brightness.dark
+                ? Colors.white.withOpacity(0.05)
+                : Colors.black.withOpacity(0.05),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32.0),
@@ -153,7 +166,7 @@ class _ListTile extends StatelessWidget {
                         child: Text(
                           module.name,
                           textAlign: TextAlign.right,
-                          style: bodyTextStyle(fontWeight: FontWeight.w300),
+                          style: theme.textTheme.bodyText1,
                         ),
                       ),
                       if (screenWidth <= SMALL_SCREEN_WIDTH)
@@ -187,7 +200,7 @@ class _ListTile extends StatelessWidget {
                   width: 630,
                   child: Text(
                     module.description,
-                    style: bodyTextStyle(),
+                    style: theme.textTheme.bodyText1,
                   ),
                 ),
               ),
@@ -245,35 +258,6 @@ class _ModuleStatusBadge extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _RepositoryButton extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return WebButton(
-      onPressed: () => launch(packagesUrl),
-      buttonBuilder: (context, isHovering) {
-        return DecoratedBox(
-          decoration: BoxDecoration(
-            border: Border.all(color: accentColor),
-            color: isHovering ? accentColor : Colors.transparent,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: 18.0,
-              horizontal: 40.0,
-            ),
-            child: Text(
-              catalogPageRepoBtnText,
-              style: buttonTextStyle(
-                color: isHovering ? Colors.white : accentColor,
-              ),
-            ),
-          ),
-        );
-      },
     );
   }
 }
