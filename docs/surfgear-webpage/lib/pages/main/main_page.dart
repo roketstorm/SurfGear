@@ -220,7 +220,7 @@ class _ProductionSlide extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 28.0),
         child: Text(
-          'Эссенция опыта спустя годы работы, всё здесь',
+          'Многолетний опыт в одном репозитории',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headline4,
         ),
