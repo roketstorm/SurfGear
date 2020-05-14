@@ -84,7 +84,8 @@ class _MainPageState extends State<MainPage>
           Listener(
             onPointerSignal: (signal) {
               if (signal is PointerScrollEvent) {
-                if (signal.scrollDelta.dy < 0 || signal.scrollDelta.dx < 0) {
+                if (signal.kind == PointerDeviceKind.touch) return;
+                if (signal.scrollDelta.dy < 0) {
                   controller.previousPage(
                     duration: const Duration(milliseconds: 250),
                     curve: Curves.easeOut,
