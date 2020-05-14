@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -34,17 +31,7 @@ class _MainPageState extends State<MainPage>
     final theme = Theme.of(context);
 
     if (index == 0) {
-      return Transform.translate(
-        offset: Offset(0, -16.0),
-        child: Image.network(
-          '/$assetsRoot/$svgSurfLogo',
-          key: Key('0'),
-          color: theme.brightness == Brightness.dark
-              ? Colors.white.withOpacity(0.05)
-              : Colors.black.withOpacity(0.05),
-          fit: BoxFit.cover,
-        ),
-      );
+      return SizedBox.shrink(key: Key('0'));
     }
 
     if (index == 1) {
@@ -62,9 +49,7 @@ class _MainPageState extends State<MainPage>
     }
 
     if (index == 2) {
-      return SizedBox.shrink(
-        key: Key('2'),
-      );
+      return SizedBox.shrink(key: Key('2'));
     }
   }
 

@@ -1,4 +1,3 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -7,7 +6,6 @@ import 'package:surfgear_webpage/assets/text.dart';
 import 'package:surfgear_webpage/common/uikit.dart';
 import 'package:surfgear_webpage/common/widgets.dart';
 import 'package:surfgear_webpage/components/menu.dart';
-import 'package:surfgear_webpage/const.dart';
 import 'package:surfgear_webpage/main.dart';
 import 'package:surfgear_webpage/modules.dart';
 import 'package:surfgear_webpage/pages/main/main_page.dart';
@@ -56,10 +54,9 @@ class _Header extends StatelessWidget {
           horizontal: 56.0,
           vertical: 32.0,
         ),
-        child: AutoSizeText(
+        child: Text(
           catalogPageTitle,
           textAlign: TextAlign.center,
-          maxLines: 2,
           style: Theme.of(context).textTheme.headline4,
         ),
       ),
