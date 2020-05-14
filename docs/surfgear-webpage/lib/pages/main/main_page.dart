@@ -46,44 +46,54 @@ class _MainPageState extends State<MainPage>
 
   @override
   Widget build(BuildContext context) {
+    final page = Stack(
+      children: [
+        _buildSurfLogo(),
+        Column(
+          children: <Widget>[
+            ConstrainedBox(
+              constraints: BoxConstraints.expand(
+                height: MediaQuery.of(context).size.height,
+              ),
+              child: MainPageHeader(),
+            ),
+            StreamBuilder(
+              stream: _pageOffsetController.stream,
+              initialData: 0.0,
+              builder: (context, offset) {
+                return MainPageBody(offset.data);
+              },
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints.expand(
+                height: MediaQuery.of(context).size.height,
+              ),
+              child: MainPageFooter(
+                scrollChangesStream: _pageOffsetController.stream,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        controller: _pageScrollController,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onVerticalDragStart: (_) {},
-          child: Stack(
-            children: [
-              _buildSurfLogo(),
-              Column(
-                children: <Widget>[
-                  ConstrainedBox(
-                    constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height,
-                    ),
-                    child: MainPageHeader(),
-                  ),
-                  StreamBuilder(
-                    stream: _pageOffsetController.stream,
-                    initialData: 0.0,
-                    builder: (context, offset) {
-                      return MainPageBody(offset.data);
-                    },
-                  ),
-                  ConstrainedBox(
-                    constraints: BoxConstraints.expand(
-                      height: MediaQuery.of(context).size.height,
-                    ),
-                    child: MainPageFooter(
-                      scrollChangesStream: _pageOffsetController.stream,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+      body: NotificationListener<OverscrollIndicatorNotification>(
+        onNotification: (notification) {
+          notification.disallowGlow();
+          return false;
+        },
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          controller: _pageScrollController,
+          child: MediaQuery.of(context).size.width <= MEDIUM_SCREEN_WIDTH
+              ? page
+              : GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onVerticalDragStart: (_) {},
+                  child: page,
+                ),
         ),
       ),
     );
