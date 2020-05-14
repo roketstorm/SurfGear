@@ -14,27 +14,12 @@ class MainPageHeader extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        DecoratedBox(
-          position: DecorationPosition.foreground,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: [0.0, 0.35, 1.0],
-              colors: [
-                Color(0x050E16).withOpacity(0.81),
-                Color(0x0F263C).withOpacity(0.36),
-                Colors.transparent,
-              ],
-            ),
-          ),
-          child: OverflowBox(
-            minWidth: max(MediaQuery.of(context).size.width, 1920),
-            maxWidth: double.infinity,
-            child: Image.asset(
-              imgHeaderBackground,
-              fit: BoxFit.fitWidth,
-            ),
+        OverflowBox(
+          minWidth: max(MediaQuery.of(context).size.width, 1920),
+          maxWidth: double.infinity,
+          child: Image.asset(
+            imgHeaderBackground,
+            fit: BoxFit.fitWidth,
           ),
         ),
         _LogoAndText(),
