@@ -9,7 +9,7 @@ void main() {
   runApp(MyApp());
 }
 
-abstract class Router {
+abstract class Routes {
   static const main = '/';
   static const catalog = '/catalog';
 
@@ -34,10 +34,10 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             title: titleText,
             theme: model.darkMode ? Style.dark : Style.light,
-            initialRoute: Router.main,
+            initialRoute: Routes.main,
             onGenerateRoute: (settings) {
               return PageRouteBuilder(
-                pageBuilder: (_, __, ___) => Router.map[settings.name],
+                pageBuilder: (_, __, ___) => Routes.map[settings.name],
               );
             },
           );

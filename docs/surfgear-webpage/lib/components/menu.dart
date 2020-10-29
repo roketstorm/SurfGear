@@ -55,7 +55,7 @@ class _MenuButton extends StatelessWidget {
           key: key,
           title: menuModulesText,
           onPressed: (context) {
-            Navigator.of(context).pushNamed(Router.catalog);
+            Navigator.of(context).pushNamed(Routes.catalog);
           },
         );
 

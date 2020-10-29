@@ -42,7 +42,7 @@ class _Header extends StatelessWidget {
           vertical: 32.0,
         ),
         child: Clickable(
-          onClick: () => Navigator.of(context).pushNamed(Router.main),
+          onClick: () => Navigator.of(context).pushNamed(Routes.main),
           child: Image.network(
             '/$assetsRoot/$svgSurfgearLogo',
             color: Theme.of(context).accentColor,

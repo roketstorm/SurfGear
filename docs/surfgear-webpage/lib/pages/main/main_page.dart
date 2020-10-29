@@ -232,7 +232,7 @@ class _ToCatalogSlide extends StatelessWidget {
         SizedBox(height: 32.0),
         FilledButton(
           title: mainPageCatalogBtnText,
-          onPressed: () => Navigator.of(context).pushNamed(Router.catalog),
+          onPressed: () => Navigator.of(context).pushNamed(Routes.catalog),
         ),
       ],
     );
