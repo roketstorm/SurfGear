@@ -16,8 +16,9 @@ import 'package:text_field_validation/src/validator/data/validator_data.dart';
 import 'package:text_field_validation/src/validator/text_field_validator.dart';
 
 /// Валидатор на основе регулярного выражения
-class RegExpValidator extends TextFieldValidator {
-  RegExpValidator(String errorText, this.regExp) : super.fromText(errorText);
+class RegExpTextFieldValidator extends TextFieldValidator {
+  RegExpTextFieldValidator(String errorText, this.regExp)
+      : super.fromText(errorText);
 
   /// Регулярное выражение для валидации
   final RegExp regExp;

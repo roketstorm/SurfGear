@@ -16,8 +16,9 @@ import 'package:text_field_validation/src/validator/data/validator_data.dart';
 import 'package:text_field_validation/src/validator/text_field_validator.dart';
 
 /// Тестовый валидатор не пустого поля
-class NoEmptyTextValidator extends TextFieldValidator {
-  NoEmptyTextValidator([String text]) : super(ValidatorData(errorText: text));
+class NoEmptyTextFieldValidator extends TextFieldValidator {
+  NoEmptyTextFieldValidator([String text])
+      : super(ValidatorData(errorText: text));
 
   @override
   ValidatorData validate(String text) {

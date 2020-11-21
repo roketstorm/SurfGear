@@ -17,13 +17,13 @@ import 'package:text_field_validation/src/validator/reg_exp_validator.dart';
 import 'package:text_field_validation/src/validator/text_field_multi_validator.dart';
 
 /// Тестовый валидатор email
-class EmailTextValidator extends TextFieldMultiValidator {
-  EmailTextValidator({
+class EmailTextFieldValidator extends TextFieldMultiValidator {
+  EmailTextFieldValidator({
     String emptyErrorText,
     String invalidText,
   }) : super([
-          NoEmptyTextValidator(emptyErrorText),
-          RegExpValidator(invalidText, _emailRegExp),
+          NoEmptyTextFieldValidator(emptyErrorText),
+          RegExpTextFieldValidator(invalidText, _emailRegExp),
         ]);
 
   static final RegExp _emailRegExp = RegExp(
