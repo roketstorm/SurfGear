@@ -34,4 +34,12 @@ class ValidatorData {
         errorText: errorText ?? this.errorText,
         isValid: isValid ?? this.isValid,
       );
+
+  @override
+  String toString() {
+    return 'ValidatorData(\n'
+        ' errorText = $errorText\n'
+        ' isValid = $isValid\n'
+        ')';
+  }
 }

@@ -21,6 +21,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -44,54 +45,56 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _isVisible = false;
-
-  KeyboardListener _keyboardListener;
-
-  @override
-  void initState() {
-    super.initState();
-    _keyboardListener = KeyboardListener()
-      ..addListener(onChange: _keyboardHandle);
-  }
-
-  @override
-  void dispose() {
-    _keyboardListener.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(_isVisible ? 'Visible' : 'hidden'),
-          const SizedBox(height: 50),
-          const TextField(),
-          const SizedBox(height: 50),
-          RaisedButton(
-            onPressed: () {
-              if (FocusManager.instance.primaryFocus != null) {
-                FocusManager.instance.primaryFocus.unfocus();
-              } else {
-                FocusScope.of(context).requestFocus(FocusNode());
-              }
-            },
-            child: const Text('Reset focus'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              _buildTextField(
+                labelText: 'Поле с не пустым текстом',
+                validator: NoEmptyTextFieldValidator(
+                  'Поле не должно быть пустым',
+                ),
+              ),
+              _buildTextField(
+                labelText: 'Email',
+                validator: EmailTextFieldValidator(
+                  emptyErrorText: 'Поле не должно быть пустым',
+                  invalidText: 'Неподходящий email',
+                ),
+              ),
+              AnimatedPadding(
+                duration: const Duration(milliseconds: 250),
+                padding: MediaQuery.of(context).viewInsets,
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  void _keyboardHandle(bool isVisible) {
-    setState(() {
-      _isVisible = isVisible;
-    });
+  Widget _buildTextField({
+    String labelText,
+    TextFieldValidator validator,
+  }) {
+    return TextFormField(
+      decoration: InputDecoration(
+        labelText: labelText,
+      ),
+      autovalidate: true,
+      validator: (String text) {
+        final ValidatorData validatorData = validator.validate(text);
+        return validatorData.isValid ? null : validatorData.errorText;
+      },
+    );
   }
 }

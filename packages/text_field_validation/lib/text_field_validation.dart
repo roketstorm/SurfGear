@@ -19,3 +19,4 @@ export 'package:text_field_validation/src/validator/text_field_multi_validator.d
 export 'package:text_field_validation/src/validator/no_empty_text_field_validator.dart';
 export 'package:text_field_validation/src/validator/email_text_field_validator.dart';
 export 'package:text_field_validation/src/validator/reg_exp_validator.dart';
+export 'package:text_field_validation/src/validator/data/validator_data.dart';
