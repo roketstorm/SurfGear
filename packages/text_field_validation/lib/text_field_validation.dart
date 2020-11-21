@@ -14,4 +14,8 @@
 
 library text_field_validation;
 
-export 'package:text_field_validation/src/text_field_validation.dart';
+export 'package:text_field_validation/src/validator/text_field_validator.dart';
+export 'package:text_field_validation/src/validator/text_field_multi_validator.dart';
+export 'package:text_field_validation/src/validator/no_empty_text_field_validator.dart';
+export 'package:text_field_validation/src/validator/email_text_field_validator.dart';
+export 'package:text_field_validation/src/validator/reg_exp_validator.dart';
