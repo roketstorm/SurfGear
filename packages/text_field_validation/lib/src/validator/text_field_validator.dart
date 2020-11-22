@@ -15,6 +15,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:text_field_validation/src/validator/data/validator_data.dart';
 
+/// TODO попробовать без data и использовать массив валидаторов
 /// Класс заглушка для валидатора текстового поля
 abstract class TextFieldValidator {
   TextFieldValidator([ValidatorData data]) : data = data ?? ValidatorData();

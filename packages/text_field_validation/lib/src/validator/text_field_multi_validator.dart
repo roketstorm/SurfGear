@@ -12,16 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import 'package:text_field_validation/src/validator/data/validation_type.dart';
 import 'package:text_field_validation/src/validator/data/validator_data.dart';
 import 'package:text_field_validation/src/validator/text_field_validator.dart';
 
 /// Множественный валидатор
 /// Позволят алидировать несколько условий
 class TextFieldMultiValidator extends TextFieldValidator {
-  TextFieldMultiValidator(this.validators) : super(null);
+  TextFieldMultiValidator(
+    this.validators, {
+    TextFieldValidationType validationType,
+  })  : validationType = validationType ?? TextFieldValidationType.and,
+        super(null);
 
   /// Список валидаторов
   final List<TextFieldValidator> validators;
+
+  /// Тип валидации
+  final TextFieldValidationType validationType;
 
   /// Проходит список валидаторов
   /// Возвращает первый попавшийся невалидный
@@ -31,9 +39,19 @@ class TextFieldMultiValidator extends TextFieldValidator {
     ValidatorData _validatorData;
     for (final TextFieldValidator validator in validators) {
       _validatorData = validator.validate(text);
-      if (_validatorData.isValid) continue;
+      if (_getNext(_validatorData)) continue;
       return _validatorData;
     }
-    return _validatorData.copy(isValid: true);
+    return _validatorData;
+  }
+
+  bool _getNext(ValidatorData data) {
+    switch (validationType) {
+      case TextFieldValidationType.or:
+        return data.isNotValid;
+      case TextFieldValidationType.and:
+      default:
+        return data.isValid;
+    }
   }
 }

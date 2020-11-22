@@ -45,6 +45,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final TextFieldMultiValidator _countValidator = TextFieldMultiValidator(
+    [
+      NoEmptyTextFieldValidator('Полу не должно быть пустым'),
+      TextFieldMultiValidator(
+        [
+          LengthLimitTextFieldValidator(
+            8,
+            'Поле должно быть 8 или 10 символов',
+          ),
+          LengthLimitTextFieldValidator(
+            10,
+            'Поле должно быть 8 или 10 символов',
+          ),
+        ],
+        validationType: TextFieldValidationType.or,
+      )
+    ],
+    validationType: TextFieldValidationType.and,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   emptyErrorText: 'Поле не должно быть пустым',
                   invalidText: 'Неподходящий email',
                 ),
+              ),
+              _buildTextField(
+                labelText:
+                    'Поле не должно быть пустым, иметь 8 или 10 символов',
+                validator: _countValidator,
               ),
               AnimatedPadding(
                 duration: const Duration(milliseconds: 250),

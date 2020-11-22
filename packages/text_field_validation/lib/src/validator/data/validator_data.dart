@@ -25,6 +25,9 @@ class ValidatorData {
   /// Являются ли данные валидными
   final bool isValid;
 
+  /// Являются ли данные не валидными
+  bool get isNotValid => !isValid;
+
   /// Скопировать даныне валидатора
   ValidatorData copy({
     String errorText,
