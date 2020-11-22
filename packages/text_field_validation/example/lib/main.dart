@@ -47,7 +47,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final TextFieldMultiValidator _countValidator = TextFieldMultiValidator(
     [
-      NoEmptyTextFieldValidator('Полу не должно быть пустым'),
+      NoEmptyTextFieldValidator('Поле не должно быть пустым'),
       TextFieldMultiValidator(
         [
           LengthLimitTextFieldValidator(
