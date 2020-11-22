@@ -23,7 +23,8 @@ class TextFieldMultiValidator extends TextFieldValidator {
     this.validators, {
     TextFieldValidationType validationType,
   })  : validationType = validationType ?? TextFieldValidationType.and,
-        super(null);
+        assert(validators != null),
+        super();
 
   /// Список валидаторов
   final List<TextFieldValidator> validators;
@@ -42,7 +43,9 @@ class TextFieldMultiValidator extends TextFieldValidator {
       if (_getNext(_validatorData)) continue;
       return _validatorData;
     }
-    return _validatorData;
+
+    /// Может быть null только в случае пустого массива
+    return _validatorData ?? ValidatorData(isValid: true);
   }
 
   bool _getNext(ValidatorData data) {
