@@ -31,10 +31,10 @@ abstract class TextFieldValidator {
   ValidatorData validate(String text);
 
   /// Функция проверяющая невалидность строку
-  bool isValid(String text) => validate(text) == null;
+  bool isValid(String text) => validate(text).isValid;
 
   /// Функция проверяющая на невалидность строку
-  bool isNotValid(String text) => validate(text) != null;
+  bool isNotValid(String text) => validate(text).isNotValid;
 
   @protected
   ValidatorData getValidatorData(bool isValidText) {
