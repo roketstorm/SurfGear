@@ -6,13 +6,13 @@ import 'package:surf_mwwm/surf_mwwm.dart';
 class TemplateComponent extends WidgetComponent {
   TemplateComponent(BuildContext context) : super(context) {
     final appComponent = Injector.of<AppComponent>(context).component;
-    final parentScaffoldKey = Injector.of<>(context).scaffoldKey;
+    final parentScaffoldKey = Injector.of<>(context).component.scaffoldKey;
 
     _navigator = Navigator.of(context);
     _messageController = MaterialMessageController(parentScaffoldKey);
     _dialogController = DefaultDialogController(parentScaffoldKey);
 
-    _wmDependencies = WmDependencies(
+    _wmDependencies = WidgetModelDependencies(
       errorHandler: StandardErrorHandler(
         _messageController,
         _dialogController
@@ -23,10 +23,10 @@ class TemplateComponent extends WidgetComponent {
   NavigatorState _navigator;
   MessageController _messageController;
   DialogController _dialogController;
-  WmDependencies _wmDependencies;
+  WidgetModelDependencies _wmDependencies;
 }
 
-/// Билдер для [TemplateWm]
+/// Билдер для TemplateWm
 TemplateWm createTemplateWm(BuildContext context) {
   final component = Injector.of<TemplateComponent>(context).component;
   return TemplateWm(

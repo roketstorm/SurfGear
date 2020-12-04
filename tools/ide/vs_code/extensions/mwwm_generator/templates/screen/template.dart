@@ -6,10 +6,10 @@ import 'package:surf_mwwm/surf_mwwm.dart';
 class Template extends MwwmWidget<TemplateComponent> {
   Template({
     Key key,
-    WmBuilder WmBuilder = createTemplateWm,
+    WidgetModelBuilder wmBuilder = createTemplateWm,
   }) : super(
           key: key,
-          WmBuilder: WmBuilder,
+          widgetModelBuilder: wmBuilder,
           dependenciesBuilder: (context) => TemplateComponent(context),
           widgetStateBuilder: () => _TemplateState(),
         );
@@ -20,8 +20,8 @@ class _TemplateState extends WidgetState<TemplateWm> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: Injector.of<TemplateComponent>(context).component.scaffoldKey,
-      body: Center(
-        child: Text("Template screen"),
+      body: const Center(
+        child: Text('Template screen'),
       ),
     );
   }

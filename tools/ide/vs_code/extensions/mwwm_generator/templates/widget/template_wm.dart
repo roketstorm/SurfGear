@@ -1,10 +1,10 @@
 import 'package:flutter/widgets.dart';
 import 'package:mwwm/mwwm.dart';
 
-/// [Wm] для Template
+/// [WidgetModel] для Template
 class TemplateWm extends WidgetModel {
   TemplateWm(
-    WmDependencies dependencies,
+    WidgetModelDependencies dependencies,
     this.navigator,
   ) : super(dependencies);
 
