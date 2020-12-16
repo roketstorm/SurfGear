@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 validator: _countValidator,
               ),
               _buildTextField(
-                labelText: 'Mask валидатор',
+                labelText: 'Mask валидатор: # - # / #',
                 validator: MaskTextFieldValidator(
                   errorText: 'Текст не соответствует маске',
                   mask: '# - # / #',
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               _buildTextField(
-                labelText: 'Телефон',
+                labelText: 'Телефон: 8 (###) ### ## ##',
                 validator: PhoneTextFieldValidator(
                   emptyErrorText: 'Поле не должно быть пустым',
                   errorInvalidText: 'Неподходящий email',
