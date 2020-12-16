@@ -11,22 +11,25 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+import 'package:flutter/foundation.dart';
+import 'package:text_field_validation/src/validator/mask_exp_validator.dart';
 import 'package:text_field_validation/src/validator/no_empty_text_field_validator.dart';
-import 'package:text_field_validation/src/validator/reg_exp_validator.dart';
 import 'package:text_field_validation/src/validator/text_field_multi_validator.dart';
 
-/// Тестовый валидатор email
-class EmailTextFieldValidator extends TextFieldMultiValidator {
-  EmailTextFieldValidator({
+/// Тестовый валидатор телефонного номера
+class PhoneTextFieldValidator extends TextFieldMultiValidator {
+  PhoneTextFieldValidator({
+    @required String mask,
+    @required Map<String, RegExp> conformitySymbols,
     String emptyErrorText,
     String errorInvalidText,
-  }) : super([
+  })  : assert(mask != null && conformitySymbols != null),
+        super([
           NoEmptyTextFieldValidator(emptyErrorText),
-          RegExpTextFieldValidator(errorInvalidText, _emailRegExp),
+          MaskTextFieldValidator(
+            errorText: errorInvalidText,
+            mask: mask,
+            conformitySymbols: conformitySymbols,
+          ),
         ]);
-
-  static final RegExp _emailRegExp = RegExp(r"(?:[a-z0-9!#$%&'"
-      r"*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"
-      r'"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
 }

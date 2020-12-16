@@ -20,5 +20,7 @@ export 'package:text_field_validation/src/validator/no_empty_text_field_validato
 export 'package:text_field_validation/src/validator/email_text_field_validator.dart';
 export 'package:text_field_validation/src/validator/reg_exp_validator.dart';
 export 'package:text_field_validation/src/validator/length_limit_text_field_validator.dart';
+export 'package:text_field_validation/src/validator/mask_exp_validator.dart';
+export 'package:text_field_validation/src/validator/phone_text_field_validator.dart';
 export 'package:text_field_validation/src/validator/data/validator_data.dart';
 export 'package:text_field_validation/src/validator/data/validation_type.dart';

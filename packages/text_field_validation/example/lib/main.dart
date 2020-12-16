@@ -88,13 +88,34 @@ class _MyHomePageState extends State<MyHomePage> {
                 labelText: 'Email',
                 validator: EmailTextFieldValidator(
                   emptyErrorText: 'Поле не должно быть пустым',
-                  invalidText: 'Неподходящий email',
+                  errorInvalidText: 'Неподходящий email',
                 ),
               ),
               _buildTextField(
                 labelText:
                     'Поле не должно быть пустым, иметь 8 или 10 символов',
                 validator: _countValidator,
+              ),
+              _buildTextField(
+                labelText: 'Mask валидатор',
+                validator: MaskTextFieldValidator(
+                  errorText: 'Текст не соответствует маске',
+                  mask: '# - # / #',
+                  conformitySymbols: {
+                    '#': RegExp(r'\w'),
+                  },
+                ),
+              ),
+              _buildTextField(
+                labelText: 'Телефон',
+                validator: PhoneTextFieldValidator(
+                  emptyErrorText: 'Поле не должно быть пустым',
+                  errorInvalidText: 'Неподходящий email',
+                  mask: '8 (###) ### ## ##',
+                  conformitySymbols: {
+                    '#': RegExp(r'\d'),
+                  },
+                ),
               ),
               AnimatedPadding(
                 duration: const Duration(milliseconds: 250),
@@ -115,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
       decoration: InputDecoration(
         labelText: labelText,
       ),
-      autovalidate: true,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (String text) {
         final ValidatorData validatorData = validator.validate(text);
         return validatorData.isValid ? null : validatorData.errorText;
