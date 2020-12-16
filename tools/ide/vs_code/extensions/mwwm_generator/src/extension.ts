@@ -4,11 +4,14 @@ import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
 
+
 // TODO добавить проверки что файлы есть при создании виджетов.
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
+	initExtension();
+
 	let widgetDisposable = vscode.commands.registerCommand('mwwm-generator.create-widget', async (...args: any[]) => {
 		try {
 			const widgetPath = getWidgetLocation(args);
@@ -190,4 +193,18 @@ function createRoute(sourceCodeFolderPath: string, name: string, folderPath: str
 
 	const filePath = vscode.Uri.file(path.join(folderPath, `${filePrefix}_route.dart`)).fsPath
 	fs.writeFileSync(filePath, routeSourceCode);
+}
+
+function initExtension() {
+	var isFlutterProject = false;
+	if (vscode.workspace.workspaceFolders) {
+		for (var i = 0; i < vscode.workspace.workspaceFolders.length; i++) {
+			let rootPath = vscode.workspace.workspaceFolders[i].uri;
+			const pubspecPath = vscode.Uri.file(path.join(rootPath.path, 'pubspec.yaml')).fsPath;
+			if (fs.existsSync(pubspecPath)) {
+				isFlutterProject = true;
+			}
+		}
+	}
+	vscode.commands.executeCommand('setContext', 'ifFlutterProject', isFlutterProject);
 }

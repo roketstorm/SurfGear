@@ -31,12 +31,12 @@
 				{
 					"command": "mwwm-generator.create-widget",
 					"group": "creating",
-					"when": "true"
+					"when": "ifFlutterProject"
 				},
 				{
 					"command": "mwwm-generator.create-screen",
 					"group": "creating",
-					"when": "true"
+					"when": "ifFlutterProject"
 				}
 			]
 		}
