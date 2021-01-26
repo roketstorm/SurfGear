@@ -1,6 +1,7 @@
-# <img src="logo.gif" title="logo" width="400" height="400" align="middle" />  
-  
-  
+# SurfGear - toolset for Flutter made by [Surf](https://surf.ru/)
+
+![Surf Gear title](https://i.ibb.co/Tq3zzjn/1024-252-64-colors.gif)
+
 A set of libraries, standards, tools used by Surf studio when developing on Flutter.  
   
 This repository is intended **for demonstration**.  
