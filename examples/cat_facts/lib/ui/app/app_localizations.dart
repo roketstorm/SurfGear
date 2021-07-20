@@ -1,6 +1,6 @@
+import 'package:cat_facts/l10n/messages_all.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 
 class AppLocalizations {
   static const Iterable<Locale> supportedLocales = [
@@ -17,6 +17,8 @@ class AppLocalizations {
     final canonicalLocaleName = Intl.canonicalizedLocale(localeName);
 
     Intl.defaultLocale = canonicalLocaleName;
+
+    await initializeMessages(canonicalLocaleName);
 
     return AppLocalizations();
   }
